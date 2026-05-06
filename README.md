@@ -55,3 +55,6 @@ Customer-Churn-Prediction-System/
 ├── requirements.txt
 ├── README.md
 └── .gitignore
+## Application Screenshot
+
+![Streamlit App](screenshots/streamlit_app.png)
