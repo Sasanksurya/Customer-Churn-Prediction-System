@@ -2,15 +2,17 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-# Load model
+# Load trained model
 model = joblib.load("models/best_rf_model.pkl")
 
 # App title
 st.title("Customer Churn Prediction System")
 
-st.write("Enter customer details below:")
+st.write(
+    "Predict whether a customer is likely to churn."
+)
 
-# User Inputs
+# User inputs
 gender = st.selectbox(
     "Gender",
     ["Male", "Female"]
@@ -70,7 +72,7 @@ payment_method = st.selectbox(
     ]
 )
 
-# Create input dataframe
+# Create dataframe
 input_data = pd.DataFrame({
     "Gender": [gender],
     "Senior Citizen": [senior_citizen],
@@ -91,11 +93,13 @@ if st.button("Predict Churn"):
     probability = model.predict_proba(input_data)[0][1]
 
     if prediction[0] == 1:
+
         st.error(
             f"Customer is likely to churn.\nProbability: {probability:.2f}"
         )
 
     else:
+
         st.success(
             f"Customer is likely to stay.\nProbability: {probability:.2f}"
         )
